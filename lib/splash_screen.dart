@@ -52,7 +52,7 @@ class StartState extends State<SplashScreen> {
 
   // TODO: qui do i valori al timer e alla callback
   startTimer() async {
-    var duration = Duration(seconds: 5);
+    var duration = Duration(seconds: 2);
     return Timer(duration, goHome);
   }
 
