@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:apra_printing/home_page.dart';
+import 'package:apra_printing/bottom_bar_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,7 @@ class StartState extends State<SplashScreen> {
 
   goHome() {
     Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (context) => HomePage()
+      builder: (context) => BottomBarPage()
     ));
   }
 }
