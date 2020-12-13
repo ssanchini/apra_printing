@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:apra_printing/home_page.dart';
-import 'package:apra_printing/bottom_bar_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'bottom_bar_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -29,7 +28,7 @@ class StartState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                child: Image.asset('apra_logo.jpg'),
+                child: Image.asset('images/apra_logo.jpg', width: 300,),
               ),
               // TODO: Qui sotto possono metterci una scritta di Loading
               /*

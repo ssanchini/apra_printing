@@ -1,6 +1,6 @@
-import 'package:apra_printing/calendar_page.dart';
-import 'package:apra_printing/customers_page.dart';
-import 'package:apra_printing/home_page.dart';
+import 'package:apra_printing/pages/calendar_page.dart';
+import 'package:apra_printing/pages/contratcts.dart';
+import 'package:apra_printing/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(BottomBarPage());
@@ -35,7 +35,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final _pageOptions = [
     HomePage(),
-    CustomersPage(),
+    Contracts(),
     CalendarPage(),
   ];
 
@@ -52,6 +52,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: _pageOptions.elementAt(_selectedPage),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blueAccent,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -59,7 +60,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_alt),
-            label: 'Customers',
+            label: 'Contracts',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today_outlined),
@@ -67,7 +68,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedPage,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

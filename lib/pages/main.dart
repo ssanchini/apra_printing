@@ -1,7 +1,5 @@
-import 'package:apra_printing/home_page.dart';
-import 'package:apra_printing/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:apra_printing/bottom_bar_page.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(MyApp());
