@@ -1,10 +1,11 @@
 import 'package:apra_printing/model/printer.dart';
 import 'package:flutter/material.dart';
 
-class PrinterCard extends StatelessWidget {
-  final Printer _printer;
+class PrinterWidget extends StatelessWidget {
 
-  const PrinterCard(this._printer);
+  final Printer stampante;
+
+  const PrinterWidget(this.stampante);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,7 @@ class PrinterCard extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(_printer.rag_cliente
-                )
+                Text(stampante.rag_cliente)
               ],
             ),
             const SizedBox(
@@ -36,9 +36,9 @@ class PrinterCard extends StatelessWidget {
                 SizedBox(
                   width: 34,
                 ),
-                Text(_printer.marca),
+                Text(stampante.marca),
                 Text(" "),
-                Text(_printer.modello),
+                Text(stampante.modello),
               ],
             ),
             Row(
@@ -47,7 +47,7 @@ class PrinterCard extends StatelessWidget {
                   width: 34,
                 ),
                 Text("SN: "),
-                Text(_printer.serial_number),
+                Text(stampante.serial_number),
               ],
             ),
             Row(
@@ -56,11 +56,11 @@ class PrinterCard extends StatelessWidget {
                   width: 34,
                 ),
                 Text("Scadenza contratto: "),
-                Text(_printer.fineContratto.day.toString()),
+                Text(stampante.fineContratto.toString()),
                 Text("-"),
-                Text(_printer.fineContratto.month.toString()),
+                Text(stampante.fineContratto.toString()),
                 Text("-"),
-                Text(_printer.fineContratto.year.toString()),
+                Text(stampante.fineContratto.toString()),
               ],
             )
           ],

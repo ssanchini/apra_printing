@@ -1,64 +1,57 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:apra_printing/model/appState.dart';
+
 import 'bottom_bar_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return StartState();
-  }
+  State createState() => _SplashState();
 }
 
-class StartState extends State<SplashScreen> {
-  @override
-  void initState() {
-    // TODO: qui devo implementare l'initState
-    super.initState();
-    startTimer();
-  }
-
+class _SplashState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
+    debugPrint('Building $runtimeType');
+
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                child: Image.asset('images/apra_logo.jpg', width: 300,),
-              ),
-              // TODO: Qui sotto possono metterci una scritta di Loading
-              /*
-              Padding(padding: EdgeInsets.only(top: 20)),
-              Text('LOADING...',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.blue
-              ),
-            ),*/
-              // TODO: inserisco la rotella di carinamento in un pad a parte
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              CircularProgressIndicator(
-                backgroundColor: Colors.white,
-                strokeWidth: 3,
-              )
-            ],
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: Image.asset(
+              'images/apra_logo.jpg',
+              width: 300,
+            ),
           ),
-        ));
-  }
-
-  // TODO: qui do i valori al timer e alla callback
-  startTimer() async {
-    var duration = Duration(seconds: 2);
-    return Timer(duration, goHome);
-  }
-
-  goHome() {
-    Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (context) => BottomBarPage()
+          // TODO: Qui sotto possono metterci una scritta di Loading
+          /*
+                       Padding(padding: EdgeInsets.only(top: 20)),
+                       Text('LOADING...',
+                       style: TextStyle(
+                       fontSize: 20.0,
+                       color: Colors.blue
+                       ),
+                       ),*/
+          // TODO: inserisco la rotella di carinamento in un pad a parte
+          Padding(padding: EdgeInsets.only(top: 30.0)),
+          CircularProgressIndicator(
+            backgroundColor: Colors.blue,
+            strokeWidth: 3,
+          )
+        ],
+      ),
     ));
+  }
+
+  @override
+  void initState() {
+    context.read<AppState>().caricaListe(context).then((value) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => BottomBarPage()));
+    });
   }
 }

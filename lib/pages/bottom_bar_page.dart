@@ -1,5 +1,5 @@
 import 'package:apra_printing/pages/calendar_page.dart';
-import 'package:apra_printing/pages/contratcts.dart';
+import 'package:apra_printing/pages/contracts.dart';
 import 'package:apra_printing/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
