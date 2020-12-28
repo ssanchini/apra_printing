@@ -1,5 +1,5 @@
 import 'package:apra_printing/model/appState.dart';
-import 'package:apra_printing/model/printer.dart';
+import 'package:apra_printing/model/client.dart';
 import 'package:apra_printing/widget/contractWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class Contracts extends StatelessWidget {
 
-  Printer _confronto;
+  Client _confronto;
   int i =0;
 
   @override
@@ -19,17 +19,17 @@ class Contracts extends StatelessWidget {
         appBar: AppBar(
           title: Text('Clients'),
         ),
-        body: Selector<AppState, List<Printer>>(
-            selector: (_, state) => state.printerList,
+        body: Selector<AppState, List<Client>>(
+            selector: (_, state) => state.clientsList,
             builder: (context, list, _) {
               debugPrint('Building pre ListView $runtimeType');
               // Qui list è la tua lista di stampanti che hai in AppState
-              return GroupedListView<Printer, String>(
+              return GroupedListView<Client, String>(
                   elements: list,
                   groupBy: (element) => element.toString(),
                   groupComparator: (value1, value2) => value2.compareTo(value1),
                   itemComparator: (item1, item2) =>
-                      item1.rag_cliente.compareTo(item2.rag_cliente),
+                      item1.rag_sociale.compareTo(item2.rag_sociale),
                   order: GroupedListOrder.ASC,
                   useStickyGroupSeparators: true,
                   groupSeparatorBuilder: (String value) => Padding(
@@ -42,18 +42,7 @@ class Contracts extends StatelessWidget {
                         //),
                       ),
                   itemBuilder: (c, element) {
-
-                    if (i == 0) {
-                      _confronto.rag_cliente.toString() = 'ACOF';
-                      i ++;
-                      return ContractWidget(element);
-                    } else if (_confronto.rag_cliente == element.rag_cliente ) {
-                      return null;
-                    } else
-                      {
                         return ContractWidget(element);
-                      }
-                    //} // fine if
                   });
             }));
   }

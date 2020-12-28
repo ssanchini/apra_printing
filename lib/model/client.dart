@@ -1,15 +1,18 @@
+import 'package:equatable/equatable.dart'; 
 
-class Client {
+
+class Client extends Equatable  {
 
   Client (
       this.rag_sociale,
       this.num_contratti,
-      this.prossima_scadenza_cliente
       );
 
   String rag_sociale;
   int num_contratti;
-  DateTime prossima_scadenza_cliente;
 
+  @override
+  // TODO: implement props
+  List<Object> get props => [ rag_sociale ];
 
 }

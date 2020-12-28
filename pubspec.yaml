@@ -26,6 +26,7 @@ dependencies:
   table_calendar: ^2.3.2
   grouped_list: ^3.7.1
   collection: ^1.14.13
+  equatable: ^1.2.5
 
 
   # The following adds the Cupertino Icons font to your application.

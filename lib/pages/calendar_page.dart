@@ -10,6 +10,8 @@ class CalendarPage extends StatefulWidget {
 class _CalendarStatePage extends State<CalendarPage> {
 
    CalendarController _controller;
+   final current = DateTime.now();
+
 
    @override
    void initState() {
@@ -35,6 +37,7 @@ class _CalendarStatePage extends State<CalendarPage> {
         ),
     body:
         TableCalendar(
+          //events: ,
           calendarStyle:
             CalendarStyle(selectedColor: Colors.blueAccent ),
             startingDayOfWeek: StartingDayOfWeek.monday,
@@ -46,19 +49,3 @@ class _CalendarStatePage extends State<CalendarPage> {
     );
   }
 }
-
-/*******
-builders: CalendarBuilders (
-selectedDayBuilder: (context,date, events) =>
-Container(
-alignment: Alignment.center,
-decoration: BoxDecoration(
-color: Theme.of(context).primaryColor,
-shape: BoxShape.circle,
-),
-child: Text(date.day.toString(),
-style: TextStyle(color: Colors.white),
-),
-),
-
-),   ***/

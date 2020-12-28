@@ -16,7 +16,7 @@ class Contracts extends StatelessWidget {
       ),
       body:
        Selector<AppState, List<Printer>>(
-                selector: (_, state) => state.printerList,
+                selector: (_, state) => state.printersList,
                 builder: (context, list, _) {
                   debugPrint('Building pre ListView $runtimeType');
                   // Qui list è la tua lista di stampanti che hai in AppState

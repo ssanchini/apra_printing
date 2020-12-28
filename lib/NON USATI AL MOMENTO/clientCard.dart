@@ -39,15 +39,6 @@ class ClientCard extends StatelessWidget {
                 Text(_client.num_contratti.toString()),
               ],
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 34,
-                ),
-                Text("Prossima Scadenza: "),
-                Text(_client.prossima_scadenza_cliente.toString()),
-              ],
-            ),
 
           ],
         ),

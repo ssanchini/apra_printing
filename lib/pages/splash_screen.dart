@@ -49,7 +49,7 @@ class _SplashState extends State<SplashScreen> {
 
   @override
   void initState() {
-    context.read<AppState>().caricaListe(context).then((value) {
+    context.read<AppState>().init(context).then((value) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomBarPage()));
     });

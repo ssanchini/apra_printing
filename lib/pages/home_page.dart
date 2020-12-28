@@ -12,6 +12,7 @@ class _HomeStatePage extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+
       ),
       body:
         UpsideImage(),
