@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:apra_printing/model/client.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +15,10 @@ class AppState extends ChangeNotifier {
 
   List<Client> clientsList = [];
   List<Printer> printersList = [];
-  Map<Client, List<Printer>> contratti = {};
+
+  Map<String, List<Printer>> contratti = {};
+
+  Map<DateTime, List<Printer>> _eventi;
 
   //TODO: creo due liste, una di clienti e una di contratti/stampanti
   //TODO: imposto la mappa (Client, Lista stampanti) perche' ad ogni cliente
@@ -37,41 +39,25 @@ class AppState extends ChangeNotifier {
         .map((e) => Printer.fromJson(e))
         .toList();
 
-
     for (int i = 0; i < printersList.length; i ++) {
-      if (i == 0)
+      if (contratti.containsKey(printersList[i].rag_cliente) )
       {
-        c = 1;
-        appoggio = printersList[i].rag_cliente.toString();
-      }
-      else if ( appoggio == printersList[i].rag_cliente.toString()) {
-        c ++;
+        contratti[printersList[i].rag_cliente].add(printersList[i]);
       }
       else
         {
-          clientsList.add(Client(appoggio, c));
-          appoggio = printersList[i].rag_cliente.toString();
-          c = 1;
+          List<Printer> listaStampanti = [printersList[i]];
+          contratti[printersList[i].rag_cliente] = listaStampanti;
         }
-      //clientsList.add(Client(printersList[i].rag_cliente.toString(), num_contratti));
-      //if (contratti.containsKey(printersList[i].rag_cliente)) {
-        //debugPrint('Building $runtimeType');
-      //}
-      //else {
-        //debugPrint('Building $runtimeType');
+    }
 
-      }
+    debugPrint('Nella mappa ci sono ' + contratti.length.toString());
     debugPrint('I contratti sono : '+ printersList.length.toString());
     debugPrint('I clienti sono : '+ clientsList.length.toString());
     return notifyListeners();
     }
   }
 
-  // Map<Printer, List> caricaEventi()  {
-   //Map<DateTime, List> prendiDate;
-  //  String link = ;
-
-  //}
 
 
 

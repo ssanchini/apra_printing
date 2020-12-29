@@ -1,23 +1,6 @@
-
 import 'package:apra_printing/model/printer.dart';
 import 'package:apra_printing/widget/printerWidget.dart';
 import 'package:flutter/material.dart';
-
-/**********************************************************************
-class PrinterList extends StatefulWidget {
-  @override
-  _PrinterListState createState() => _PrinterListState();
-}
-
-class _PrinterListState extends State<PrinterList> {
-
-  @override
-  Widget build(BuildContext context) {
-
-  }
-
-}
-***********************************************************************/
 
 
 class PrinterList extends StatefulWidget {
@@ -40,7 +23,7 @@ class _printerListState extends State<PrinterList> {
         },
         itemCount: _listPrinter.length,
       );
-  } // chiudo Widgetchiudo Widget
+  } // chiudo Widget
 
 }
 

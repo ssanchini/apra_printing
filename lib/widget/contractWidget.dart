@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:apra_printing/model/printer.dart';
 
 class ContractWidget extends StatelessWidget {
-  final Client cliente;
+
+  final String cliente;
 
   const ContractWidget(this.cliente);
 
@@ -17,9 +18,7 @@ class ContractWidget extends StatelessWidget {
           contentPadding:
           EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           leading: Icon(Icons.account_circle),
-          title: Text(cliente.rag_sociale),
-          subtitle: Text('Num. Contratti: ' + cliente.num_contratti.toString()),
-
+          title: Text(cliente),
           trailing: Icon(Icons.arrow_forward),
         ),
       ),
