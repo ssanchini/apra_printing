@@ -1,15 +1,16 @@
 import 'package:apra_printing/model/printer.dart';
+import 'package:apra_printing/widget/clientWidget.dart';
 import 'package:apra_printing/widget/contractWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:apra_printing/model/appState.dart';
 import 'package:provider/provider.dart';
 
-class Contracts extends StatefulWidget {
+class Clients extends StatefulWidget {
   @override
-  _contractsState createState() => _contractsState();
+  _clientsState createState() => _clientsState();
 }
 
-class _contractsState extends State<Contracts> {
+class _clientsState extends State<Clients> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +25,17 @@ class _contractsState extends State<Contracts> {
                 itemCount: list.length,
                 itemBuilder: (BuildContext context, int index) {
                   String key = list.keys.elementAt(index);
-
-                  return ContractWidget(key);
+                  int l = list[key].length;
+                  List<Printer> pri = list[key];
+                  debugPrint('Sto generando il cliente $key con $l contratti');
+                  return InkWell(
+                      onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                      ContractWidget(key, l, pri)));
+                      },
+                      child:
+                        ClientsWidget(key),
+                  );
                 },
               );
             }));

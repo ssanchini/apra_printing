@@ -1,6 +1,6 @@
 import 'package:apra_printing/model/appState.dart';
 import 'package:apra_printing/model/printer.dart';
-import 'package:apra_printing/widget/printerWidget.dart';
+import 'package:apra_printing/widget/contractWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';

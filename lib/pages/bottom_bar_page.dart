@@ -1,5 +1,5 @@
 import 'package:apra_printing/pages/calendar_page.dart';
-import 'package:apra_printing/pages/contracts.dart';
+import 'package:apra_printing/pages/clients.dart';
 import 'package:apra_printing/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -33,9 +33,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedPage = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   final _pageOptions = [
     HomePage(),
-    Contracts(),
+    Clients(),
     CalendarPage(),
   ];
 
@@ -60,7 +61,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_alt),
-            label: 'Contracts',
+            label: 'Clients',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today_outlined),

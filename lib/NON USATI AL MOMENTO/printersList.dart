@@ -1,5 +1,4 @@
 import 'package:apra_printing/model/printer.dart';
-import 'package:apra_printing/widget/printerWidget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +18,7 @@ class _printerListState extends State<PrinterList> {
         padding:
         EdgeInsets.symmetric(vertical: 10),
         itemBuilder: (BuildContext _, int _i) {
-          return PrinterWidget(_listPrinter[_i]);
+          return null;
         },
         itemCount: _listPrinter.length,
       );

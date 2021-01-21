@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:apra_printing/model/client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -13,12 +12,12 @@ import 'printer.dart';
 
 class AppState extends ChangeNotifier {
 
-  List<Client> clientsList = [];
   List<Printer> printersList = [];
 
   Map<String, List<Printer>> contratti = {};
 
-  Map<DateTime, List<Printer>> _eventi;
+  Map<DateTime, List<Printer>> _eventi = {};
+
 
   //TODO: creo due liste, una di clienti e una di contratti/stampanti
   //TODO: imposto la mappa (Client, Lista stampanti) perche' ad ogni cliente
@@ -40,6 +39,7 @@ class AppState extends ChangeNotifier {
         .toList();
 
     for (int i = 0; i < printersList.length; i ++) {
+
       if (contratti.containsKey(printersList[i].rag_cliente) )
       {
         contratti[printersList[i].rag_cliente].add(printersList[i]);
@@ -51,9 +51,9 @@ class AppState extends ChangeNotifier {
         }
     }
 
-    debugPrint('Nella mappa ci sono ' + contratti.length.toString());
-    debugPrint('I contratti sono : '+ printersList.length.toString());
-    debugPrint('I clienti sono : '+ clientsList.length.toString());
+    debugPrint('I clienti sono ' + contratti.length.toString());
+    debugPrint('Le stampanti sono : '+ printersList.length.toString());
+
     return notifyListeners();
     }
   }
