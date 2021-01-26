@@ -32,5 +32,8 @@ class MyApp extends StatelessWidget {
    Widget build(BuildContext context) {
      return SplashScreen();
    }
+
+   @override
+   void initState
  }
  
