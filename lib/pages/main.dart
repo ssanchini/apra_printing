@@ -15,8 +15,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppState>(
         create: (context) => AppState(),
+        // Widget con figlio Material App ma al suo interno gestiremo notifiche e altri dati
+        // Notification Provider
         child: MaterialApp(
-          home: SplashScreen(),
+          home: NotificationWidget(),
         ));
   }
 }
+ class NotificationWidget extends StatefulWidget {
+   @override
+   _NotificationWidgetState createState() => _NotificationWidgetState();
+ }
+ 
+ class _NotificationWidgetState extends State<NotificationWidget> {
+   @override
+   Widget build(BuildContext context) {
+     return SplashScreen();
+   }
+ }
+ 

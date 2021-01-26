@@ -27,6 +27,7 @@ dependencies:
   grouped_list: ^3.7.1
   collection: ^1.14.13
   equatable: ^1.2.5
+  intl: ^0.16.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -37,6 +38,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   provider: ^4.2.3+3
+  flutter_local_notifications: ^3.0.1
 
 
 # For information on the generic Dart part of this file, see the

@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:apra_printing/model/appState.dart';
 import 'package:provider/provider.dart';
 
-class Clients extends StatefulWidget {
+class ClientsPage extends StatefulWidget {
   @override
   _clientsState createState() => _clientsState();
 }
 
-class _clientsState extends State<Clients> {
+class _clientsState extends State<ClientsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,6 @@ class _clientsState extends State<Clients> {
                   String key = list.keys.elementAt(index);
                   int l = list[key].length;
                   List<Printer> pri = list[key];
-                  debugPrint('Sto generando il cliente $key con $l contratti');
                   return InkWell(
                       onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
@@ -38,6 +37,7 @@ class _clientsState extends State<Clients> {
                   );
                 },
               );
-            }));
+            })
+    );
   }
 } // chiudo Widgetchiudo Widget

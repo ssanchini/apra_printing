@@ -1,5 +1,5 @@
 import 'package:apra_printing/pages/calendar_page.dart';
-import 'package:apra_printing/pages/clients.dart';
+import 'package:apra_printing/pages/clients_page.dart';
 import 'package:apra_printing/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   final _pageOptions = [
     HomePage(),
-    Clients(),
+    ClientsPage(),
     CalendarPage(),
   ];
 
@@ -52,6 +52,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: Center(
         child: _pageOptions.elementAt(_selectedPage),
       ),
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blueAccent,
         items: const <BottomNavigationBarItem>[

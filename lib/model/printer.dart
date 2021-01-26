@@ -55,5 +55,9 @@ class Printer {
   @override
   List<Object> get props => [ idStampante ];
 
+  @override
+  String toString() {
+    return rag_cliente;
+  }
 }
 

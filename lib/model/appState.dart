@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -13,11 +14,8 @@ import 'printer.dart';
 class AppState extends ChangeNotifier {
 
   List<Printer> printersList = [];
-
   Map<String, List<Printer>> contratti = {};
-
-  Map<DateTime, List<Printer>> _eventi = {};
-
+  Map<DateTime, List<Printer>> eventi = {};
 
   //TODO: creo due liste, una di clienti e una di contratti/stampanti
   //TODO: imposto la mappa (Client, Lista stampanti) perche' ad ogni cliente
@@ -25,7 +23,6 @@ class AppState extends ChangeNotifier {
 
   int c = 0;
   int num_contratti = 0;
-  String appoggio;
 
   Future init(BuildContext context) async {
     debugPrint('caricamento liste stampanti');
@@ -38,8 +35,15 @@ class AppState extends ChangeNotifier {
         .map((e) => Printer.fromJson(e))
         .toList();
 
-    for (int i = 0; i < printersList.length; i ++) {
+    List<Printer> listByDate = List.from(printersList);
 
+    listByDate.sort((a,b) => a.fineContratto.compareTo(b.fineContratto));
+
+    //TODO: qui implemento la mappa con chiave la data di finecontratto
+    eventi = groupBy(listByDate, (key) => key.fineContratto);
+
+    //TODO: qui implemento la mappa di contratti con chiave la ragione sociale
+    for (int i = 0; i < printersList.length; i ++) {
       if (contratti.containsKey(printersList[i].rag_cliente) )
       {
         contratti[printersList[i].rag_cliente].add(printersList[i]);

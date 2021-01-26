@@ -1,5 +1,7 @@
 import 'package:apra_printing/model/printer.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 
 class ContractWidget extends StatelessWidget {
 
@@ -9,11 +11,9 @@ class ContractWidget extends StatelessWidget {
 
   const ContractWidget(this.contratto, this.numContratti, this.stampante);
 
-  //int numcontratti,
-
   @override
   Widget build(BuildContext context) {
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(contratto),
@@ -28,15 +28,15 @@ class ContractWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text(stampante[index].marca) ,
+                  Text("Marca:                                ${stampante[index].marca}") ,
                   SizedBox(height: 10,),
-                  Text(stampante[index].modello) ,
+                  Text("Modello:                             ${stampante[index].modello}") ,
                   SizedBox(height: 10,),
-                  Text(stampante[index].serial_number) ,
+                  Text("SN:                                      ${stampante[index].serial_number}") ,
                   SizedBox(height: 10,),
-                  Text(stampante[index].installazione.toString()) ,
+                  Text("Data Inizio contratto:       ${formatDateStart(stampante[index].installazione)}") ,
                   SizedBox(height: 10,),
-                  Text(stampante[index].fineContratto.toString()) ,
+                  Text("Data fine contratto:          ${formatDateEnd(stampante[index].fineContratto)}") ,
                   SizedBox(height: 10,),
                 ],
               ),
@@ -46,4 +46,17 @@ class ContractWidget extends StatelessWidget {
       )
     );
   }
+
+  formatDateStart (dataInizio ) {
+    var formatter = new DateFormat('dd-MM-yyyy');
+    String formattedStart = formatter.format(dataInizio);
+    return formattedStart;
+  }
+
+  formatDateEnd (dataFine ) {
+    var formatter = new DateFormat('dd-MM-yyyy');
+    String formattedEnd = formatter.format(dataFine);
+    return formattedEnd;
+  }
+
 }
