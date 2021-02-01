@@ -1,4 +1,5 @@
 import 'package:apra_printing/model/appState.dart';
+import 'package:apra_printing/widget/notificationmanager.dart';
 import 'package:flutter/material.dart';
 import 'package:apra_printing/pages/splash_screen.dart';
 
@@ -22,18 +23,25 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
- class NotificationWidget extends StatefulWidget {
-   @override
-   _NotificationWidgetState createState() => _NotificationWidgetState();
- }
- 
- class _NotificationWidgetState extends State<NotificationWidget> {
-   @override
-   Widget build(BuildContext context) {
-     return SplashScreen();
-   }
+class NotificationWidget extends StatefulWidget {
+  @override
+  _NotificationWidgetState createState() => _NotificationWidgetState();
+}
 
-   @override
-   void initState
- }
- 
+class _NotificationWidgetState extends State<NotificationWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen();
+  }
+  @override
+  void initState() {
+    initStateAsync();
+  }
+  Future initStateAsync() async {
+    // Widget che inizializza tutto quello che mi serve per le notifiche
+    await NotificationManager().init();
+  }
+}
+
+
+

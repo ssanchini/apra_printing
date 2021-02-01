@@ -1,8 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:apra_printing/model/appState.dart';
-
 import 'bottom_bar_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,19 +16,19 @@ class _SplashState extends State<SplashScreen> {
     debugPrint('Building $runtimeType');
 
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         body: Center(
-        child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            child: Image.asset(
-              'images/apra_logo.jpg',
-              width: 300,
-            ),
-          ),
-          // TODO: Qui sotto possono metterci una scritta di Loading
-          /*
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                child: Image.asset(
+                  'images/apra_logo.jpg',
+                  width: 300,
+                ),
+              ),
+              // TODO: Qui sotto possono metterci una scritta di Loading
+              /*
                        Padding(padding: EdgeInsets.only(top: 20)),
                        Text('LOADING...',
                        style: TextStyle(
@@ -36,15 +36,15 @@ class _SplashState extends State<SplashScreen> {
                        color: Colors.blue
                        ),
                        ),*/
-          // TODO: inserisco la rotella di carinamento in un pad a parte
-          Padding(padding: EdgeInsets.only(top: 30.0)),
-          CircularProgressIndicator(
-            backgroundColor: Colors.blue,
-            strokeWidth: 3,
-          )
-        ],
-      ),
-    ));
+              // TODO: inserisco la rotella di carinamento in un pad a parte
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+              CircularProgressIndicator(
+                backgroundColor: Colors.blue,
+                strokeWidth: 3,
+              )
+            ],
+          ),
+        ));
   }
 
   @override

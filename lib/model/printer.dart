@@ -51,7 +51,6 @@ class Printer {
     'scadenza' : fineContratto
   };
 
-
   @override
   List<Object> get props => [ idStampante ];
 

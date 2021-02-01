@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 
 import 'dart:convert';
 import 'printer.dart';
+import 'package:http/http.dart' as http;
 
 //TODO: Qui andro'a memorizzare lo stato della mia applicazione che verra' poi
 //TODO: passato a tutte le pagine. Quindi vado a elaboare anche la lista di
@@ -14,8 +15,11 @@ import 'printer.dart';
 class AppState extends ChangeNotifier {
 
   List<Printer> printersList = [];
+  List<Printer> listByDate = [];
   Map<String, List<Printer>> contratti = {};
   Map<DateTime, List<Printer>> eventi = {};
+  Map<DateTime, List<Printer>> nextEvents = {};
+  Map<DateTime, List<Printer>> fromToday = {};
 
   //TODO: creo due liste, una di clienti e una di contratti/stampanti
   //TODO: imposto la mappa (Client, Lista stampanti) perche' ad ogni cliente
@@ -24,23 +28,35 @@ class AppState extends ChangeNotifier {
   int c = 0;
   int num_contratti = 0;
 
+  Future<List<Printer>> fetchContract (http.Client client) async {
+    final listaS =
+    await client.get('https://firebasestorage.googleapis.com/v0/b/aspdm-project-f74ab.appspot.com/o/contracts.json?alt=media&token=89b786ef-ae97-426e-a0c0-252900d27a93');
+    return parsePrinter(listaS.body);
+  }
+
+  List<Printer> parsePrinter(String responseBody) {
+    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Printer>((json) => Printer.fromJson(json)).toList();
+  }
+
+
   Future init(BuildContext context) async {
-    debugPrint('caricamento liste stampanti');
 
-    final data = await DefaultAssetBundle.of(context)
-        .loadString('assets/apracs_printing.json');
-    List<dynamic> stampanti = json.decode(data);
-    printersList = stampanti
-        .cast<Map<String, dynamic>>()
-        .map((e) => Printer.fromJson(e))
-        .toList();
+   final data = await fetchContract(http.Client());
 
-    List<Printer> listByDate = List.from(printersList);
+    printersList = data;
+
+    for(int i = 0; i < printersList.length; i ++) {
+      if(printersList[i].fineContratto.isAfter(DateTime.now().subtract(Duration(days: 1)))) {
+        listByDate.add(printersList[i]);
+      }
+    }
 
     listByDate.sort((a,b) => a.fineContratto.compareTo(b.fineContratto));
-
     //TODO: qui implemento la mappa con chiave la data di finecontratto
-    eventi = groupBy(listByDate, (key) => key.fineContratto);
+    eventi = groupBy(printersList, (key) => key.fineContratto);
+    nextEvents = groupBy(listByDate, (key) => key.fineContratto);
+
 
     //TODO: qui implemento la mappa di contratti con chiave la ragione sociale
     for (int i = 0; i < printersList.length; i ++) {
@@ -61,6 +77,7 @@ class AppState extends ChangeNotifier {
     return notifyListeners();
     }
   }
+
 
 
 

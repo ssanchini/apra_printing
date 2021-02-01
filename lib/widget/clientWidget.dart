@@ -1,7 +1,4 @@
-import 'package:apra_printing/model/client.dart';
-import 'package:apra_printing/widget/contractWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:apra_printing/widget/contractWidget.dart';
 
 class ClientsWidget extends StatelessWidget {
   final String cliente;

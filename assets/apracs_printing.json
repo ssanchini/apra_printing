@@ -1,6 +1,8 @@
 [ {"id":1  , "ragione_sociale":"ACOF","marca":"SAMSUNG","modello":"M4080FX","serial_number":"0GX8BJEG90000QN","installazione":"2016-03-31","media_mono":"1881","media_colore":"","scadenza":"2020-03-31"},
   {"id":2  , "ragione_sociale":"ACOF","marca":"HP","modello":"HP LASERJET MFP E72530","serial_number":"CNC1L88007","installazione":"2019-02-22","media_mono":"3281","media_colore":"","scadenza":"2023-02-22"},
   {"id":3  , "ragione_sociale":"ACOF","marca":"SAMSUNG","modello":"ML-451X 501X SERIES","serial_number":"Z5TFBJFJ10002AZ","installazione":"2019-06-24","media_mono":"1266","media_colore":"","scadenza":"2023-06-24"},
+  {"id":4  , "ragione_sociale":"ACOF S.GIORGIO","marca":"SAMSUNG","modello":"M337X 387X 407X SERIES","serial_number":"ZDGTBJAF500006E","installazione":"2015-02-18","media_mono":"416","media_colore":"","scadenza":"2021-02-21"},
+  {"id":4  , "ragione_sociale":"ACOF S.GIORGIO","marca":"SAMSUNG","modello":"M337X 387X 407X SERIES","serial_number":"ZDGTBJAF500006E","installazione":"2015-02-18","media_mono":"416","media_colore":"","scadenza":"2021-02-21"},
   {"id":4  , "ragione_sociale":"ACOF S.GIORGIO","marca":"SAMSUNG","modello":"M337X 387X 407X SERIES","serial_number":"ZDGTBJAF500006E","installazione":"2015-02-18","media_mono":"416","media_colore":"","scadenza":"2019-02-18"},
   {"id":5  , "ragione_sociale":"AGRIFOGLIA SRL","marca":"SAMSUNG","modello":"M4580FX","serial_number":"079FBJFJ10000EZ","installazione":"2020-09-15","media_mono":"1160","media_colore":"","scadenza":"2024-09-15"},
   {"id":6  , "ragione_sociale":"AGRIFOGLIA SRL","marca":"HP","modello":"HP LASERJET PRO MFP M521DN","serial_number":"CNDKLBQ9GF","installazione":"2020-09-15","media_mono":"881","media_colore":"","scadenza":"2024-09-15"},
