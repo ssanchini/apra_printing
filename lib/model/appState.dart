@@ -16,7 +16,9 @@ class AppState extends ChangeNotifier {
 
   List<Printer> printersList = [];
   List<Printer> listByDate = [];
+  List<Printer> listaFiltrata = [];
   Map<String, List<Printer>> contratti = {};
+  Map<String, List<Printer>> contrattiFiltrati = {};
   Map<DateTime, List<Printer>> eventi = {};
   Map<DateTime, List<Printer>> nextEvents = {};
   Map<DateTime, List<Printer>> fromToday = {};
@@ -39,6 +41,11 @@ class AppState extends ChangeNotifier {
     return parsed.map<Printer>((json) => Printer.fromJson(json)).toList();
   }
 
+
+  void filtra(stringa) {
+    contrattiFiltrati = Map.from(contratti)..removeWhere((key, value) => !key.toLowerCase().contains(stringa));
+    notifyListeners();
+  }
 
   Future init(BuildContext context) async {
 
@@ -71,12 +78,18 @@ class AppState extends ChangeNotifier {
         }
     }
 
+   contrattiFiltrati = Map.from(contratti);
+
+
     debugPrint('I clienti sono ' + contratti.length.toString());
     debugPrint('Le stampanti sono : '+ printersList.length.toString());
 
     return notifyListeners();
-    }
   }
+
+
+}
+
 
 
 

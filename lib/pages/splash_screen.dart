@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:apra_printing/model/appState.dart';
@@ -14,6 +15,7 @@ class _SplashState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     debugPrint('Building $runtimeType');
+
 
     return Scaffold(
         backgroundColor: Colors.white,

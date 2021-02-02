@@ -6,7 +6,7 @@ import 'package:apra_printing/pages/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+runApp(MyApp());
 
 }
 
@@ -42,6 +42,5 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     await NotificationManager().init();
   }
 }
-
 
 

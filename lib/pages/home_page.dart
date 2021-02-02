@@ -48,70 +48,62 @@ class _HomeStatePage extends State<HomePage> {
               Selector<AppState, Map<DateTime, List<Printer>>>(
                   selector: (_, state) => state.nextEvents,
                   builder: (context, list, _) {
+                    final _today = DateTime.now();
+                    final nextEvent = list.keys.first;
+                    final _oggiParsed = formatDate(_today);
+                    final _nextParsed = formatDate(nextEvent);
+                    List<Printer> eventOggi = list[nextEvent];
+                   if(_oggiParsed == _nextParsed){
+                     for (int i = 0; i < eventOggi.length; i++) {
+                       NotificationManager().showLocalNotification(
+                           i,
+                           eventOggi[i].fineContratto,
+                           eventOggi[i].rag_cliente,
+                           eventOggi[i].serial_number,
+                           eventOggi[i].marca,
+                           eventOggi[i].modello);
+                     }
+                   }
                     debugPrint('Building pre ListView $runtimeType');
                     return Expanded(
                       child: CustomScrollView(
-                        slivers: [
-                          SliverList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                              final key = list.keys.elementAt(index);
-                              List<Printer> showP = list[key];
-                              String printDate = formatDate(key);
-                              return ListTile(
-                                  title: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                          child:
-                                          Text("${printDate}",
-                                              style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold))
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.zero,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: list[key].map((e) =>
-                                              Text("${e.rag_cliente}\n"
-                                                  "${e.marca} ${e.modello} \n"
-                                                  "SN: ${e.serial_number}",
-                                              maxLines: 4, textAlign: TextAlign.left, )).toList(),
+                          slivers: [
+                            SliverList(
+                              delegate: SliverChildBuilderDelegate((context, index) {
+                                final key = list.keys.elementAt(index);
+                                List<Printer> showP = list[key];
+                                String printDate = formatDate(key);
+                                return ListTile(
+                                    title: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Padding(
+                                            padding: EdgeInsets.all(0),
+                                            child:
+                                            Text("${printDate}",
+                                              style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                                            )
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.all(0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children:  list[key].map((e) =>
+                                                  Text("- ${e.rag_cliente}\n"
+                                                      "  ${e.marca} ${e.modello} \n"
+                                                      "  SN: ${e.serial_number}",
+                                                      maxLines: 4, textAlign: TextAlign.left),).toList(),
+                                            )
+                                        ),
 
-                                        )
-                                      ),
-
-                                ],
-                              ));
-                            }, childCount: 5),
-                          ),
-                        ],
+                                      ],
+                                    ));
+                              }, childCount: 5),
+                            ),
+                          ],
                       ),
                     );
                   }),
-              Selector<AppState, Map<DateTime, List<Printer>>>(
-                  selector: (_, state) => state.nextEvents,
-                  builder: (context, list, _) {
-                    debugPrint('Building pre ListView $runtimeType');
-                    final oggi = list.keys.elementAt(0);
-                    List<Printer> eventiOggi = list[oggi];
-                    debugPrint("Oggi ci sono :  ${eventiOggi.length} eventi");
-
-                    return ElevatedButton(
-                      onPressed: () async {
-                        for (int i = 0; i < eventiOggi.length; i++) {
-                          NotificationManager().showLocalNotification(
-                              i,
-                              eventiOggi[i].fineContratto,
-                              eventiOggi[i].rag_cliente,
-                              eventiOggi[i].serial_number,
-                              eventiOggi[i].marca,
-                              eventiOggi[i].modello);
-                        }
-                      },
-                      child: Text('Show Notification'),
-                    );
-                  })
             ],
           )),
       backgroundColor: Colors.white,
