@@ -35,28 +35,68 @@ class _CalendarStatePage extends State<CalendarPage> {
         elevation: 0,
         title: Text('Calendar'),
       ),
-      body: Selector<AppState, Map<DateTime, List<Printer>>>(
-          selector: (_, state) => state.eventi,
-          builder: (context, listaEventi, _) => Column(children: [
-                TableCalendar(
-                  events: listaEventi,
-                  calendarStyle:
-                      CalendarStyle(selectedColor: Colors.blueAccent),
-                  startingDayOfWeek: StartingDayOfWeek.monday,
-                  onDaySelected: (date, events, holiday) {
-                    print(date.toIso8601String());
-                    setState(() {
-                      selectedEvents = events;
-                      print(events);
-                    });
-                  },
-                  calendarController: _controller,
-                ),
-                const SizedBox(height: 8.0),
-                Expanded(child: eventListConstruct()),
-              ])),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          if (orientation == Orientation.portrait) {
+            return _portraitMode();
+          } else {
+            return _landscapeMode();
+          }
+        },
+      ),
       backgroundColor: Colors.white,
     );
+  }
+
+  Widget _portraitMode() {
+    return Selector<AppState, Map<DateTime, List<Printer>>>(
+        selector: (_, state) => state.eventi,
+        builder: (context, listaEventi, _) => Column(children: [
+              Container(
+                  child: TableCalendar(
+                events: listaEventi,
+                calendarStyle: CalendarStyle(selectedColor: Colors.blueAccent),
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                initialCalendarFormat: CalendarFormat.month,
+                onDaySelected: (date, events, holiday) {
+                  print(date.toIso8601String());
+                  setState(() {
+                    selectedEvents = events;
+                    print(events);
+                  });
+                },
+                calendarController: _controller,
+              )),
+              const SizedBox(height: 8.0),
+              Expanded(child: eventListConstruct()),
+            ]));
+  }
+
+  Widget _landscapeMode() {
+    return Selector<AppState, Map<DateTime, List<Printer>>>(
+        selector: (_, state) => state.eventi,
+        builder: (context, listaEventi, _) => Row(children: [
+              Expanded(
+                child: ListView(children: [
+                  TableCalendar(
+                    events: listaEventi,
+                    calendarStyle:
+                        CalendarStyle(selectedColor: Colors.blueAccent),
+                    startingDayOfWeek: StartingDayOfWeek.monday,
+                    initialCalendarFormat: CalendarFormat.twoWeeks,
+                    onDaySelected: (date, events, holiday) {
+                      print(date.toIso8601String());
+                      setState(() {
+                        selectedEvents = events;
+                        print(events);
+                      });
+                    },
+                    calendarController: _controller,
+                  )
+                ]),
+              ),
+              Expanded(child: eventListConstruct())
+            ]));
   }
 
   Widget eventListConstruct() {

@@ -13,6 +13,9 @@ class ClientsPage extends StatefulWidget {
 
 class _clientsState extends State<ClientsPage> {
 
+  bool isSearching = false;
+  SearchBar searchBar;
+
   @override
   void initState() {
     searchBar = new SearchBar(
@@ -23,12 +26,44 @@ class _clientsState extends State<ClientsPage> {
     );
   }
 
-  SearchBar searchBar;
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
-      title: new Text('Clients'),
-      actions: [searchBar.getSearchAction(context)],
+      title: !isSearching
+          ? Text('Clients')
+          : TextField(
+        onChanged: (value) => context.read<AppState>().filtra(value),
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            hintText: "Search client here",
+            hintStyle: TextStyle(color: Colors.white)
+        ),
+      ),
+      actions: <Widget>[
+        isSearching
+            ? IconButton(
+          icon: Icon(Icons.cancel),
+          onPressed: () {
+            setState(() {
+              context.read<AppState>().resettaFiltri();
+              this.isSearching = false;
+              // TODO' Qui devo resettare la ricerca
+            });
+          },
+        )
+            : IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            setState(() {
+              this.isSearching = true;
+            });
+          },
+        )
+      ],
     );
   }
 

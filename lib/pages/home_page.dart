@@ -1,9 +1,7 @@
 import 'package:apra_printing/model/appState.dart';
 import 'package:apra_printing/model/printer.dart';
-import 'package:apra_printing/widget/notificationmanager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +36,7 @@ class _HomeStatePage extends State<HomePage> {
                     child: Container(
                         alignment: Alignment.center,
                         child: Text(
-                          "Prossime scadenze imminenti:",
+                          "Upcoming contracts expiring:",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -48,72 +46,48 @@ class _HomeStatePage extends State<HomePage> {
               Selector<AppState, Map<DateTime, List<Printer>>>(
                   selector: (_, state) => state.nextEvents,
                   builder: (context, list, _) {
-                    final _today = DateTime.now();
-                    final nextEvent = list.keys.first;
-                    final _oggiParsed = formatDate(_today);
-                    final _nextParsed = formatDate(nextEvent);
-                    List<Printer> eventOggi = list[nextEvent];
-                   if(_oggiParsed == _nextParsed){
-                     for (int i = 0; i < eventOggi.length; i++) {
-                       NotificationManager().showLocalNotification(
-                           i,
-                           eventOggi[i].fineContratto,
-                           eventOggi[i].rag_cliente,
-                           eventOggi[i].serial_number,
-                           eventOggi[i].marca,
-                           eventOggi[i].modello);
-                     }
-                   }
                     debugPrint('Building pre ListView $runtimeType');
                     return Expanded(
                       child: CustomScrollView(
-                          slivers: [
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate((context, index) {
-                                final key = list.keys.elementAt(index);
-                                List<Printer> showP = list[key];
-                                String printDate = formatDate(key);
-                                return ListTile(
-                                    title: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        Padding(
-                                            padding: EdgeInsets.all(0),
-                                            child:
-                                            Text("${printDate}",
-                                              style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                                            )
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.all(0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children:  list[key].map((e) =>
-                                                  Text("- ${e.rag_cliente}\n"
-                                                      "  ${e.marca} ${e.modello} \n"
-                                                      "  SN: ${e.serial_number}",
-                                                      maxLines: 4, textAlign: TextAlign.left),).toList(),
-                                            )
-                                        ),
-
-                                      ],
-                                    ));
-                              }, childCount: 5),
-                            ),
-                          ],
-                      ),
+                        slivers: [
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate((context, index) {
+                              final key = list.keys.elementAt(index);
+                              List<Printer> showP = list[key];
+                              String printDate = context.read<AppState>().
+                              formatDate(key);
+                              return ListTile(
+                                  title: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Padding(
+                                          padding: EdgeInsets.all(0),
+                                              child : Text("  ${printDate}  ",
+                                                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                                              )
+                                          ),
+                                      Padding(
+                                          padding: EdgeInsets.all(0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children:  list[key].map((e) =>
+                                                Text("- ${e.rag_cliente}\n"
+                                                    "  ${e.marca} ${e.modello} \n"
+                                                    "  SN: ${e.serial_number}",
+                                                    maxLines: 4, textAlign: TextAlign.left),).toList(),
+                                          )
+                                      ),
+                                    ],
+                                  ));
+                            }, childCount: 5),
+                          ),
+                        ],),
                     );
                   }),
-            ],
-          )),
+            ],)
+      ),
       backgroundColor: Colors.white,
     );
-  }
-
-  formatDate (data) {
-    var formatter = new DateFormat('dd-MM-yyyy');
-    String formatDate = formatter.format(data);
-    return formatDate;
   }
 
 }
