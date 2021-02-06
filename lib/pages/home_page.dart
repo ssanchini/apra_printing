@@ -59,25 +59,20 @@ class _HomeStatePage extends State<HomePage> {
                               return ListTile(
                                   title: Column(
                                     mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: <Widget>[
-                                      Padding(
-                                          padding: EdgeInsets.all(0),
-                                              child : Text("  ${printDate}  ",
+                                      Text("-----------   ${printDate}   -----------",
                                                 style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                                              )
-                                          ),
-                                      Padding(
-                                          padding: EdgeInsets.all(0),
-                                          child: Column(
+                                                textAlign: TextAlign.center,
+                                              ),
+                                     Text(''),
+                                     Column(
+                                            crossAxisAlignment: CrossAxisAlignment.stretch,
                                             mainAxisSize: MainAxisSize.min,
                                             children:  list[key].map((e) =>
-                                                Text("- ${e.rag_cliente}\n"
-                                                    "  ${e.marca} ${e.modello} \n"
-                                                    "  SN: ${e.serial_number}",
-                                                    maxLines: 4, textAlign: TextAlign.left),).toList(),
-                                          )
-                                      ),
-                                    ],
+                                                showPrinter(e),
+                                          ).toList()
+                                     )],
                                   ));
                             }, childCount: 5),
                           ),
@@ -90,6 +85,19 @@ class _HomeStatePage extends State<HomePage> {
     );
   }
 
+}
+
+Widget showPrinter (Printer e) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget> [
+      Text('- ${e.rag_cliente}', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+      Text(' ${e.marca} ${e.modello}', textAlign: TextAlign.left),
+      Text(' SN: ${e.serial_number}' ,),
+      Text(''),
+    ]
+  );
 }
 
 class UpsideImage extends StatelessWidget {

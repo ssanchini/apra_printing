@@ -35,7 +35,7 @@ class AppState extends ChangeNotifier {
   Future<List<Printer>> fetchContract(http.Client client) async {
     final listaS =
     await client.get(
-        'https://firebasestorage.googleapis.com/v0/b/aspdm-project-f74ab.appspot.com/o/contracts.json?alt=media&token=89b786ef-ae97-426e-a0c0-252900d27a93');
+        'https://firebasestorage.googleapis.com/v0/b/aspdm-project-f74ab.appspot.com/o/contracts.json?alt=media&token=07becb3f-2bc5-43c0-9342-9ca899ae88d7');
     return parsePrinter(listaS.body);
   }
 
@@ -66,20 +66,23 @@ class AppState extends ChangeNotifier {
 
   void notificaGiornaliera() {
     final _today = formatDate(DateTime.now());
-    final _firstDate = formatDate(nextEvents.keys.first);
-    List<Printer> eventOggi = nextEvents[listByDate.first];
+    final _firstDate = formatDate(listByDate.first.fineContratto);
+    debugPrint('Building $runtimeType');
+    final eventiOggi = nextEvents[listByDate.first.fineContratto];
+
     if (_today == _firstDate) {
-      for (int i = 0; i < eventOggi.length; i++) {
-        NotificationManager().showLocalNotification(
-            i,
-            eventOggi[i].fineContratto,
-            eventOggi[i].rag_cliente,
-            eventOggi[i].serial_number,
-            eventOggi[i].marca,
-            eventOggi[i].modello);
+    for (int i = 0; i < eventiOggi.length; i++) {
+       NotificationManager().showLocalNotification(
+             i,
+             eventiOggi[i].fineContratto,
+             eventiOggi[i].rag_cliente,
+             eventiOggi[i].serial_number,
+             eventiOggi[i].marca,
+             eventiOggi[i].modello);
       }
-    }
-  }
+     }
+   }
+
 
   Future init(BuildContext context) async {
       final data = await fetchContract(http.Client());
@@ -111,10 +114,7 @@ class AppState extends ChangeNotifier {
 
       contrattiFiltrati = Map.from(contratti);
 
-      debugPrint('Next Events ${nextEvents.keys.first}');
-      
-      debugPrint('I clienti sono ' + contratti.length.toString());
-      debugPrint('Le stampanti sono : ' + printersList.length.toString());
+      notificaGiornaliera();
 
       return notifyListeners();
     }
