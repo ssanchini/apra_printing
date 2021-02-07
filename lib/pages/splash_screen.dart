@@ -29,15 +29,6 @@ class _SplashState extends State<SplashScreen> {
                   width: 300,
                 ),
               ),
-              // TODO: Qui sotto possono metterci una scritta di Loading
-              /*
-                       Padding(padding: EdgeInsets.only(top: 20)),
-                       Text('LOADING...',
-                       style: TextStyle(
-                       fontSize: 20.0,
-                       color: Colors.blue
-                       ),
-                       ),*/
               // TODO: inserisco la rotella di carinamento in un pad a parte
               Padding(padding: EdgeInsets.only(top: 30.0)),
               CircularProgressIndicator(
