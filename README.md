@@ -38,10 +38,15 @@ contenente il link del file.
 Una volta prelevato i dati dal nostro link effettuo la decodifica del file json in una lista di
 tipo <Printer> e, da questa, genero le mie mappe e liste ordinate per necessita'.
 All'interno di questa pagina inoltre sviluppo anche la funzione notificaGiornaliera(), questa controlla
-se la prima nuova scadenza presente nella lista coincide con la data di oggi, se la condizione e' vera
-si invia una notifica per ogni scadenza presente oggi (seconda immagine)
+se la prima nuova data presente tra le scadenze coincide con la data di oggi, se la condizione e' vera
+verra' inviata una notifica di promemoria.
 
 ![image](/assets/screenshot/notifica.PNG)
+
+Qui vediamo entrambe le notifiche presenti nella barra. Ho scelto di visualizzare due notifiche
+distinte in quanto mi e' importante visualizzare i dati di entrambi i contratti in scadenza
+singolarmente. Questo eprche' in una singola data possono capitare anche scadenze di piu' clienti.
+
 ![image](/assets/screenshot/notifica2.PNG)
 
 Questa scelta e' stata fatta per garantire all'utente di tenere sempre una notifica di 'promemoria'
