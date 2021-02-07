@@ -35,7 +35,7 @@ class AppState extends ChangeNotifier {
   Future<List<Printer>> fetchContract(http.Client client) async {
     final listaS =
     await client.get(
-        'https://firebasestorage.googleapis.com/v0/b/aspdm-project-f74ab.appspot.com/o/contracts.json?alt=media&token=07becb3f-2bc5-43c0-9342-9ca899ae88d7');
+        'https://firebasestorage.googleapis.com/v0/b/aspdm-project-f74ab.appspot.com/o/printer_list.json?alt=media&token=cfe47b17-ba82-40eb-a6b5-cdb22b45667a');
     return parsePrinter(listaS.body);
   }
 
