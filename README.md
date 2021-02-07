@@ -1,10 +1,11 @@
-# apra_printing
+Stefano Sanchini
+Mat. 306439
+Titolo del progetto: Gestore Reparto Printing Apra CS
 
-A new Flutter application.
+# apra_printing
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 

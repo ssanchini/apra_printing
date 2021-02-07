@@ -16,7 +16,21 @@ class _HomeStatePage extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home Page'),
       ),
-      body: Container(
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          if (orientation == Orientation.portrait) {
+            return _portraitMode();
+          } else {
+            return _landscapeMode();
+          }
+        },
+      ),
+      backgroundColor: Colors.white,
+    );
+  }
+
+  _portraitMode() {
+    return Container(
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -61,18 +75,18 @@ class _HomeStatePage extends State<HomePage> {
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: <Widget>[
-                                      Text("-----------   ${printDate}   -----------",
-                                                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                     Text(''),
-                                     Column(
-                                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children:  list[key].map((e) =>
-                                                showPrinter(e),
+                                      Text("-------   ${printDate}   -------",
+                                        style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      Text(''),
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children:  list[key].map((e) =>
+                                              showPrinter(e),
                                           ).toList()
-                                     )],
+                                      )],
                                   ));
                             }, childCount: 5),
                           ),
@@ -80,8 +94,79 @@ class _HomeStatePage extends State<HomePage> {
                     );
                   }),
             ],)
-      ),
-      backgroundColor: Colors.white,
+      );
+  }
+
+  _landscapeMode() {
+    return Container(
+        padding: const EdgeInsets.all(20),
+        child: Row (
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Text(''),
+                UpsideImage(),
+                Text(''),
+                Container(
+                      height: 35,
+                      width: 300,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      margin: const EdgeInsets.all(5),
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Upcoming contracts expiring:",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 16),
+                          ))
+                ),
+              ],
+            ),
+            Selector<AppState, Map<DateTime, List<Printer>>>(
+                    selector: (_, state) => state.nextEvents,
+                    builder: (context, list, _) {
+                      debugPrint('Building pre ListView $runtimeType');
+                      return Expanded(
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverList(
+                              delegate: SliverChildBuilderDelegate((context, index) {
+                                final key = list.keys.elementAt(index);
+                                List<Printer> showP = list[key];
+                                String printDate = context.read<AppState>().
+                                formatDate(key);
+                                return ListTile(
+                                    title: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: <Widget>[
+                                        Text("-------   ${printDate}   -------",
+                                          style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(''),
+                                        Column(
+                                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children:  list[key].map((e) =>
+                                                showPrinter(e),
+                                            ).toList()
+                                        )],
+                                    ));
+                              }, childCount: 5),
+                            ),
+                          ],),
+                      );
+                    })
+              ],
+            ),
     );
   }
 
@@ -92,7 +177,15 @@ Widget showPrinter (Printer e) {
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget> [
-      Text('- ${e.rag_cliente}', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.left),
+      Row(
+        children: [
+          Text('- '),
+          Expanded(
+            child:
+              Text('${e.rag_cliente}', style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.left)
+            )
+        ],
+      ),
       Text(' ${e.marca} ${e.modello}', textAlign: TextAlign.left),
       Text(' SN: ${e.serial_number}' ,),
       Text(''),
@@ -105,7 +198,7 @@ class UpsideImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image.asset('images/apra_logo.jpg',
-          alignment: Alignment.bottomLeft, width: 350),
+          alignment: Alignment.bottomLeft, width: 300),
     );
   }
 }
