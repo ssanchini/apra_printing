@@ -57,6 +57,8 @@ Clients - e' la pagina in cui mostro tutti le ragioni sociali di tutti i clienti
 un contratto Printing. in questa pagina ho implementato la barra di ricerca veloce in alto.
 Una volta cliccato sul cliente si entrera' nella sua pagina contenente tutti i suoi contratti.
 
+![image](/assets/screenshot/clients_page.PNG)
+
 Calendar - il calendario con tutti gli eventi posizionati per ogni data. Selezionando il giorno
 verranno elencate sotto le scadenze in quel giorno.
 
