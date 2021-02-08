@@ -31,6 +31,7 @@ Page in cui viene visualizzato un CircularProgressIndicator. Nel caso in cui ci 
 con il caricamento dei dati l'applicazione rimarra in questa schermata fino al suo sblocco.
 
 ![image](/assets/screenshot/splash_screen.PNG)
+
 ** Immagine della Splash Screen Page durante il caricamento **
 
 L'elaborazione di tutti i dati viene interamente concentrata nella pagina di AppState.
@@ -46,6 +47,7 @@ se la prima nuova data presente tra le scadenze coincide con la data di oggi, se
 verra' inviata una notifica di promemoria.
 
 ![image](/assets/screenshot/notifica.PNG)
+
 ** Immagine della notifica in alto **
 
 Qui sotto vediamo entrambi gli avvisi presenti nella barra delle notifiche. Ho scelto di visualizzare
@@ -53,6 +55,7 @@ due notifiche distinte in quanto sara' importante visualizzare i dati di entramb
 singolarmente. Questo perche' in una singola data possono capitare anche scadenze di clienti diversi.
 
 ![image](/assets/screenshot/notifica2.PNG)
+
 ** Visualizzazione delle due notifiche nell'apposita' barra **
 
 Questa scelta e' stata fatta per garantire all'utente di tenere sempre un 'promemoria'
@@ -70,17 +73,21 @@ poi mi e' sembrato esteticamente piu' gradevole ed ordinato metterlo solo nella 
 
 ![image](/assets/screenshot/home_page.PNG)
 
+** Home Page **
+
 Clients - e' la pagina in cui mostro le ragioni sociali di tutti i clienti con cui ho almeno
 un contratto Printing. in questa pagina ho implementato la barra di ricerca veloce in alto.
 Una volta cliccato su uno specifico cliente si entrera' nella sua pagina contenente tutti i suoi contratti.
 
 ![image](/assets/screenshot/clients_page.PNG)
+
 ** Clients Page **
 
 Calendar - qui viene visualizzato il calendario con tutti gli eventi posizionati per ogni data.
 Selezionando il giorno verranno elencati i contratti con scadenza in esso.
 
 ![image](/assets/screenshot/calendar_page.PNG)
+
 ** Esempio di due contratti in scadenza lo stesso giorno **
 
 Essendo un applicativo utilizzabile in contesto lavorativo, voglio rendere l'esperienza d'uso la piu'
@@ -90,6 +97,7 @@ l'impaginazione nella maniera piu' adeguata ad una visuale orizzontale.
 
 ![image](/assets/screenshot/home_landscape.PNG)
 ![image](/assets/screenshot/calendar_landscape.PNG)
+
 ** Qui mostro la Home e la Calendar Pege in Landscape Mode **
 
 ## Tecnologia
