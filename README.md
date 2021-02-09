@@ -20,28 +20,27 @@ struttura.
 
 ## Scelte di programmazione e casi d'usi
 
-Come anticipato a fine Introduzione, il software che mi monitorizza il numero di copie stampate da ogni
+Come anticipato a fine Introduzione, il software che monitorizza il numero di copie stampate da ogni
 singola macchina genera automaticamente un file json con al suo interno una lista di oggetti che
 chiameremo Printer. Questo perche' ogni elemento della lista fa riferimento ad una singola macchina
 installata con dati di Serial Number - univoco per ogni macchina - marca, modello, ragione sociale
 del cliente legato alla macchina e le rispettive date di inizio contratto e fine contratto - calcolato
 in base ai dati inseriti al momento della creazione tra 48 e 60 mesi - .
 All'avvio dell' applicativo ho scelto di mostrare la schermata di caricamento che ho chiamato SplashScreen
-Page in cui viene visualizzato un CircularProgressIndicator. Nel caso in cui ci sara' un problema
-con il caricamento dei dati l'applicazione rimarra in questa schermata fino al suo sblocco.
+Page in cui viene visualizzato un CircularProgressIndicator. Nel caso in cui si verifichera' un problema
+con il caricamento dei dati l'applicazione presentera' questa schermata fino al suo sblocco.
 
 ![image](/assets/screenshot/splash_screen.PNG)
 
 ** Immagine della Splash Screen Page durante il caricamento **
 
 L'elaborazione di tutti i dati viene interamente concentrata nella pagina di AppState.
-All'avvio infatti il servizio http (di cui parleremo dopo) si occupa di
-prelevare i dati nel file json appositamente posto in un hosting firebase esterno. Ovviamente la scelta
-dell'hosting e' stata fatta per rendere piu veloce e semplice lo sviluppo del progetto, in quanto non
-rientrava nelle specifiche e perche' il cambio di questo si limita alla sostituzione della stringa
-contenente il link del file.
-Una volta prelevato i dati dal nostro link effettuo la decodifica del file json in una lista di
-tipo <Printer> e, da questa, genero le mie mappe e le mie liste ordinate in base alla necessita'.
+All'avvio infatti il servizio http si occupa di prelevare i dati nel file json, appositamente posto
+in un hosting firebase esterno. Ovviamente la scelta dell'hosting e' stata fatta per rendere piu
+veloce e semplice lo sviluppo del progetto, in quanto non rientrava nelle specifiche e perche' il
+cambio di questo si limita alla sostituzione della stringa contenente il link del file.
+Una volta prelevato i dati dal nostro link eggettua la decodifica del file json in una lista di
+tipo Printer e, da questa, genero le mie mappe e le mie liste ordinate in base alla necessita'.
 All'interno di questa pagina inoltre sviluppo anche la funzione notificaGiornaliera(), che controlla
 se la prima nuova data presente tra le scadenze coincide con la data di oggi, se la condizione e' vera
 verra' inviata una notifica di promemoria.
@@ -67,9 +66,9 @@ Home Page - Clients - Calendar.
 
 Home Page - qui ho deciso di mostrare le prossime 5 scadende imminenti. Ovviamente ogni
 scadenza puo' contenere anche piu' di un contratto potendo creare piu installazioni lo
-stesso giorno. Essendo la pagina iniziale ho decido di implementare anche il logo dell'azienda.
-Ho deciso di farlo tramite funzione in quanto inizialmente volevo mostrarlo in tutte le pagine ma
-poi mi e' sembrato esteticamente piu' gradevole ed ordinato metterlo solo nella Home.
+stesso giorno. Nella pagina iniziale ho implementato anche il logo dell'azienda, ho deciso di farlo
+tramite funzione in quanto inizialmente l'intenzione era di mostrarlo in tutte le pagine ma  mi e'
+sembrato esteticamente piu' gradevole ed ordinato metterlo solo nella Home.
 
 ![image](/assets/screenshot/home_page.PNG)
 
