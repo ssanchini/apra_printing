@@ -20,9 +20,9 @@ E' stato scelto questo schema di dati perche' il software che monitorizza il num
 delle stampanti installate fornisce il file json di ogni singola installazione con questa precisa
 struttura.
 
-## Scelte di programmazione e casi d'usi
+## Scelte di programmazione e casi d'uso
 
-Come anticipato a fine Introduzione, il software che monitorizza il numero di copie stampate da ogni
+Come anticipato a fine Introduzione, il software che monitora il numero di copie stampate da ogni
 singola macchina genera automaticamente un file json con al suo interno una lista di oggetti che
 chiameremo Printer. Questo perche' ogni elemento della lista fa riferimento ad una singola macchina
 installata con dati di Serial Number - univoco per ogni macchina - marca, modello, ragione sociale
